@@ -1,0 +1,22 @@
+server:
+  port: 8081 # Evit conflit with kafka ui in developer environment
+
+spring:
+  application:
+    name: transaction-gateway
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 127.0.0.1:9092 # docker container adress
+      bindings:
+        # link name in kafka
+        processTransaction-out-0:
+          destination: transactions.raw
+          content-type: application/json
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics # Actuator
