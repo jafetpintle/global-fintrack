@@ -21,3 +21,9 @@ spring:
         processTransaction-in-0: # Nota que ahora es "-in-0" porque consume
           destination: transactions.raw
           group: accounting-group # Importante para escalabilidad
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+    
