@@ -1,0 +1,23 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: accounting-processor
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fintrack_db
+    username: user_fintrack
+    password: password_fintrack
+  jpa:
+    hibernate:
+      ddl-auto: update 
+    show-sql: true
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 127.0.0.1:9092
+      bindings:
+        processTransaction-in-0: # Nota que ahora es "-in-0" porque consume
+          destination: transactions.raw
+          group: accounting-group # Importante para escalabilidad
