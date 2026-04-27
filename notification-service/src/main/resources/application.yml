@@ -1,0 +1,15 @@
+server:
+  port: 8083 #
+
+spring:
+  application:
+    name: notification-service
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 127.0.0.1:9092
+      bindings:
+        consumeTransaction-in-0:
+          destination: transactions.raw
+          group: notification-group
